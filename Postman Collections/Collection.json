@@ -1,0 +1,205 @@
+{
+	"info": {
+		"_postman_id": "9b9a834d-a2e9-4839-869b-7fde87e60d4f",
+		"name": "Superhero",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create a hero",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "90a7a172-53d8-4b93-a437-f2491350b39d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let response = pm.response.json();\r",
+							"\r",
+							"let jsonData = pm.response.json();\r",
+							"pm.environment.set(\"token\", jsonData.token);\r",
+							"pm.environment.set(\"id\", jsonData.id);\r",
+							"console.log(pm.environment.get(\"id\"));\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "671ddaa4-6b9b-4671-8125-a3f95f62967d",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "20fbdd12-42e6-4864-aefb-6a440a3f04bf",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n  \"birthDate\": \"2019-02-21\",\r\n  \"city\": \"New York\",\r\n  \"fullName\": \"Doctor Frennee\",\r\n  \"gender\": \"G\",\r\n  \"id\": {{id}},\r\n  \"mainSkill\": \"Hoppp\",\r\n  \"phone\": \"+74992222222222\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseURL}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Update of superhero",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "63855940-e621-4a45-aa6f-c8a099e26c14",
+						"exec": [
+							"pm.test(\"Test message equals: Hero was updated\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"Hero was updated\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ef4d5375-bc8c-4c6d-b1ad-4d94b4c89d6e",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "94dac12c-8e3b-4c63-bbd0-e5a4ca769732",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"birthDate\": \"2019-02-21\",\r\n  \"city\": \"New York\",\r\n  \"fullName\": \"Doctor Frennee\",\r\n  \"gender\": \"G\",\r\n  \"mainSkill\": \"Hoppp\",\r\n  \"phone\": \"+74992222222222\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseURL}}/{{id}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Get superhero by id",
+			"id": "0ab951b9-a209-47a9-ad32-afec977760c9",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{id}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseURL}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Get all superheroes",
+			"id": "f2b1edc6-6038-4568-bf15-ba4e4b9c131d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseURL}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Remove superhero by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f129f692-f8d4-40cc-866b-3b1df8852b80",
+						"exec": [
+							"pm.test(\"Test message equals: Hero was deleted!\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"Hero was deleted!\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a4fe0452-cb26-4df7-b0d6-39ad4374084d",
+						"exec": [],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "f70df79d-b859-48d4-ae59-0b92b0e26b5b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseURL}}/{{id}}"
+			},
+			"response": []
+		}
+	]
+}
